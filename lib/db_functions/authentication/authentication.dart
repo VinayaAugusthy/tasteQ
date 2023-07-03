@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 import '../../model/authentication/authentication.dart';
+import '../../widgets/call_snackbar.dart';
 
 ValueNotifier<List<Authentication>> getUserNotifier = ValueNotifier([]);
 
@@ -32,7 +33,7 @@ bool login(String email, String password, BuildContext ctx) {
 
 successSignup(ctx, email, password) async {
   final userBox = await Hive.openBox<Authentication>('authentication');
-  // callSnackBar(msg: 'User signed up succesfully', ctx: ctx);
+  callSnackBar(msg: 'User signed up succesfully', ctx: ctx);
   final newUser = Authentication(email: email, password: password);
   await userBox.add(newUser);
   // Navigator.of(ctx).pushAndRemoveUntil(
@@ -43,7 +44,7 @@ successSignup(ctx, email, password) async {
 }
 
 showSnackbar(ctx) {
-  // callSnackBar(msg: 'username and password does not match', ctx: ctx);
+  callSnackBar(msg: 'username and password does not match', ctx: ctx);
 }
 
 Future<void> getUsers() async {

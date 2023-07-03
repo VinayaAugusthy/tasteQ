@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tasteq/screens/splash_screen.dart';
 import 'model/authentication/authentication.dart';
 import 'model/recipe/recipe.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TasteQ',
       theme: ThemeData(primarySwatch: Colors.red),
-      // home: const SplashScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
