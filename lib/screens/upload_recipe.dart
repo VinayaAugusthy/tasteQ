@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../constants/constants.dart';
+import '../db_functions/recipes/recipe_db.dart';
 import '../model/recipe/recipe.dart';
 import '../widgets/call_snackbar.dart';
 import '../widgets/call_textformfield.dart';
@@ -233,7 +233,9 @@ class _UploadRecipeState extends State<UploadRecipe> {
         ingrediants: ingrediants,
         procedure: procedure,
         videoLink: videolink);
-    // upload(addedList, context);
+    upload(
+      addedList,
+    );
     print('kitty');
   }
 
