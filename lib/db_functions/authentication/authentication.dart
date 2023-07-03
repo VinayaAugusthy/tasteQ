@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:tasteq/screens/login.dart';
 
 import '../../model/authentication/authentication.dart';
 import '../../widgets/call_snackbar.dart';
@@ -36,11 +37,11 @@ successSignup(ctx, email, password) async {
   callSnackBar(msg: 'User signed up succesfully', ctx: ctx);
   final newUser = Authentication(email: email, password: password);
   await userBox.add(newUser);
-  // Navigator.of(ctx).pushAndRemoveUntil(
-  //     MaterialPageRoute(
-  //       builder: (context) => const LoginScreen(),
-  //     ),
-  //     (route) => false);
+  Navigator.of(ctx).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+      (route) => false);
 }
 
 showSnackbar(ctx) {

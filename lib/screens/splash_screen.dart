@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasteq/screens/home.dart';
+
+import '../main.dart';
+import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -37,24 +42,23 @@ class _SplashScreenState extends State<SplashScreen> {
     super.dispose();
   }
 
-  Future gotoLogin() async {
+  gotoLogin() async {
     await Future.delayed(Duration(seconds: 2));
 
-    // Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //   builder: (context) => LoginScreen(),
-    // ));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => LoginScreen(),
+    ));
   }
 
   Future<void> checkUserLoggedIn() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // final userLogged = prefs.getBool(SAVE_KEY_NAME);
-
-    // if (userLogged == false || userLogged == null) {
-    //   gotoLogin();
-    // } else {
-    //   Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //     builder: (ctx) => UserHome(),
-    //   ));
-    // }
+    final prefs = await SharedPreferences.getInstance();
+    final userLogged = prefs.getBool(SAVE_KEY_NAME);
+    if (userLogged == false || userLogged == null) {
+      gotoLogin();
+    } else {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (ctx) => HomeScreen(),
+      ));
+    }
   }
 }
