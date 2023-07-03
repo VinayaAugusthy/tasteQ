@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../screens/favourites.dart';
 import '../screens/home.dart';
 import '../screens/upload_recipe.dart';
 
 final navItems = [
   const HomeScreen(),
   const UploadRecipe(),
-  const FavouriteScren()
+  const FavouriteScreen()
 ];
 final categoryItems = [
   'Breakfast',

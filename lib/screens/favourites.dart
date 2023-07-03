@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:tasteq/model/recipe/recipe.dart';
 import 'package:tasteq/widgets/call_favtile.dart';
 
-class FavouriteList extends StatefulWidget {
-  const FavouriteList({super.key});
+import '../db_functions/recipes/recipe_db.dart';
+
+class FavouriteScreen extends StatefulWidget {
+  const FavouriteScreen({super.key});
 
   @override
-  State<FavouriteList> createState() => _FavouriteListState();
+  State<FavouriteScreen> createState() => _FavouriteScreenState();
 }
 
-class _FavouriteListState extends State<FavouriteList> {
+class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // getRecipes();
+    getRecipes();
     // getFavourite();
   }
 
@@ -26,18 +28,19 @@ class _FavouriteListState extends State<FavouriteList> {
         centerTitle: true,
       ),
       body: ValueListenableBuilder(
-          valueListenable: getRecipeNotifier,
-          builder: (BuildContext context, List<Recipe> favList, Widget? child) {
-            return ListView.separated(
-                itemBuilder: (context, index) {
-                  final fav = favList[index];
-                  return callTile(fav, context, index);
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider();
-                },
-                itemCount: favList.length);
-          }),
+        valueListenable: getRecipeNotifier,
+        builder: (BuildContext context, List<Recipe> favList, Widget? child) {
+          return ListView.separated(
+              itemBuilder: (context, index) {
+                final fav = favList[index];
+                return callTile(fav, context, index);
+              },
+              separatorBuilder: (context, index) {
+                return const Divider();
+              },
+              itemCount: favList.length);
+        },
+      ),
     );
   }
 }
