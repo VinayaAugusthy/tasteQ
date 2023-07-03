@@ -8,9 +8,7 @@ ValueNotifier<List<Recipe>> getRecipeNotifier = ValueNotifier([]);
 List<Recipe> recipeList = getRecipeNotifier.value.toList();
 upload(Recipe value) async {
   final recipebox = await Hive.openBox<Recipe>('recipes');
-
   await recipebox.add(value);
-
   getRecipes();
 }
 

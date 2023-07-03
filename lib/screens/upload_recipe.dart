@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tasteq/screens/base_screen.dart';
+import 'package:tasteq/screens/home.dart';
 import '../constants/constants.dart';
 import '../db_functions/recipes/recipe_db.dart';
 import '../model/recipe/recipe.dart';
@@ -236,6 +238,12 @@ class _UploadRecipeState extends State<UploadRecipe> {
     upload(
       addedList,
     );
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) {
+        return BaseScreen();
+      },
+    ));
+    // BaseScreen();
     print('kitty');
   }
 

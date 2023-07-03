@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasteq/screens/base_screen.dart';
 import 'package:tasteq/screens/home.dart';
 
 import '../main.dart';
@@ -57,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
       gotoLogin();
     } else {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (ctx) => HomeScreen(),
+        builder: (ctx) => BaseScreen(),
       ));
     }
   }

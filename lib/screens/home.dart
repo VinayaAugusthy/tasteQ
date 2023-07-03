@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
+import 'package:tasteq/db_functions/recipes/recipe_db.dart';
 import '../constants/constants.dart';
-import '../db_functions/recipes/recipe_db.dart';
 import '../model/recipe/recipe.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,22 +14,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Recipe> recipeList = []; // Replace this with your recipe list
+  late Box<Recipe> recipeBox; // Replace this with your recipe list
 
   @override
   void initState() {
     super.initState();
-    print(recipeList.length);
+    // recipeBox = Hive.box('recipes');
+    // print(recipeBox.length);
     getRecipes();
   }
 
   @override
   Widget build(BuildContext context) {
-    final tabItems = recipeList.toList();
-    final categories = tabItems
-        .map((recipeElement) => recipeElement.category)
-        .toSet()
-        .toList();
+    recipeBox = Hive.box<Recipe>('recipes');
+    final tabItems = recipeBox.values.toList();
+    final categories =
+        tabItems.map((recipe) => recipe.category).toSet().toList();
 
     return DefaultTabController(
       length: categories.length,
@@ -37,30 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Home'),
           centerTitle: true,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.add_circle_outline),
-                label: 'Add',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Favourites',
-              ),
-            ],
-            showUnselectedLabels: true,
-            selectedItemColor: Colors.red,
-            unselectedItemColor: Colors.black,
-            currentIndex: index,
-            onTap: _onItemTapped),
         drawer: SidebarX(
           headerBuilder: (context, extended) {
-            return SizedBox(
-              child: Image.asset('assets/images/logo3.png'),
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 60,
+                left: 10,
+                right: 10,
+              ),
+              child: SizedBox(
+                child: Image.asset("assets/images/icon_android.png"),
+              ),
             );
           },
           headerDivider: const SizedBox(
@@ -73,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             SidebarXItem(
               icon: Icons.settings_outlined,
-              label: '   Recent uploads',
+              label: '   Recently Viewed',
               onTap: () {
                 // Navigator.push(
                 //   context,
@@ -135,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     .toList(),
               ),
               Expanded(
-                child: recipeList.isNotEmpty
+                child: recipeBox.isNotEmpty
                     ? TabBarView(
                         children: categories
                             .map(
