@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:tasteq/model/recipe/recipe.dart';
 
 ValueNotifier<List<Recipe>> getRecipeNotifier = ValueNotifier([]);
-
+List<Recipe> recipeList = getRecipeNotifier.value.toList();
 upload(Recipe value) async {
   final recipebox = await Hive.openBox<Recipe>('recipes');
 
