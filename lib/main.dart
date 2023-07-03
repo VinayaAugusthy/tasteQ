@@ -4,6 +4,7 @@ import 'package:tasteq/screens/splash_screen.dart';
 import 'model/authentication/authentication.dart';
 import 'model/recipe/recipe.dart';
 
+const SAVE_KEY_NAME = 'UserLoggedIn';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();

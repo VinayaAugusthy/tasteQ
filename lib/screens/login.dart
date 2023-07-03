@@ -5,8 +5,8 @@ import 'package:tasteq/model/authentication/authentication.dart';
 import 'package:tasteq/screens/signup.dart';
 import 'package:tasteq/widgets/call_snackbar.dart';
 import 'package:tasteq/widgets/call_textformfield.dart';
-
 import '../db_functions/authentication/authentication.dart';
+import '../main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
