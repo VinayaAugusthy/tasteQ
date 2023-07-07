@@ -12,6 +12,7 @@ Future<void> main() async {
   Hive.registerAdapter(RecipeAdapter());
   await Hive.openBox<Authentication>('authentication');
   await Hive.openBox<Recipe>('recipes');
+  // await Hive.openBox<Recipe>('favourites');
   runApp(const MyApp());
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:tasteq/db_functions/recipes/recipe_db.dart';
+import 'package:tasteq/screens/manage_recipes.dart';
 import '../constants/constants.dart';
 import '../model/recipe/recipe.dart';
 
@@ -73,11 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.settings_outlined,
               label: '   Manage your recipes',
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const AdminRecipeList()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ManageRecipesScreen(),
+                  ),
+                );
               },
             ),
             SidebarXItem(
@@ -147,14 +149,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      // bottomIndex = index;
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => navItems[index]));
-    });
   }
 }
 

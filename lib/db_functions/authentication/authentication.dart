@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:tasteq/screens/login.dart';
-
 import '../../model/authentication/authentication.dart';
 import '../../widgets/call_snackbar.dart';
 

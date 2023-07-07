@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasteq/model/recipe/recipe.dart';
 import 'package:tasteq/widgets/call_favtile.dart';
 
+import '../db_functions/favourites/favourites_db.dart';
 import '../db_functions/recipes/recipe_db.dart';
 
 class FavouriteScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     // TODO: implement initState
     super.initState();
     getRecipes();
-    // getFavourite();
+    getFavourite();
   }
 
   @override
