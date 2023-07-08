@@ -32,14 +32,15 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
         valueListenable: getRecipeNotifier,
         builder: (BuildContext context, List<Recipe> favList, Widget? child) {
           return ListView.separated(
-              itemBuilder: (context, index) {
-                final fav = favList[index];
-                return callTile(fav, context, index);
-              },
-              separatorBuilder: (context, index) {
-                return const Divider();
-              },
-              itemCount: favList.length);
+            itemBuilder: (context, index) {
+              final fav = favList[index];
+              return callTile(fav, context, index);
+            },
+            separatorBuilder: (context, index) {
+              return const Divider();
+            },
+            itemCount: favList.length,
+          );
         },
       ),
     );

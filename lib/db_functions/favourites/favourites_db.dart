@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tasteq/model/recipe/recipe.dart';
 import '../recipes/recipe_db.dart';
 
+List<Recipe> favList = [];
 makeFavourite(String name, Recipe recipe) async {
   final favouriteDB = await Hive.box<Recipe>('favourites');
   favouriteDB.put(name, recipe);
@@ -11,7 +12,7 @@ makeFavourite(String name, Recipe recipe) async {
 
 getFavourite() async {
   final favouriteDB = await Hive.openBox<Recipe>('favourites');
-  // final favRecipe = favouriteDB.values.toList();
+  favList.addAll(favouriteDB.values);
   getRecipeNotifier.value.clear();
   getRecipeNotifier.value.addAll(favouriteDB.values);
   // ignore: invalid_use_of_visible_for_testing_member
